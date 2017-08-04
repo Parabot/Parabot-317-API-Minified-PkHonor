@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.parabot</groupId>
-    <artifactId>317-api-minified</artifactId>
-    <version>1.21.0</version>
-    <name>Parabot 317-API-Minified</name>
+    <artifactId>317-api-minified-pkhonor</artifactId>
+    <version>1.0</version>
+    <name>Parabot 317-API-Minified PkHonor</name>
 
     <licenses>
         <license>
