@@ -25,7 +25,7 @@ public class Players {
 
     };
 
-    private static final Filter<Player> ALL_FILTER = new Filter<Player>() {
+    private static final Filter<Player>           ALL_FILTER = new Filter<Player>() {
 
         @Override
         public boolean accept(Player p) {
@@ -33,17 +33,18 @@ public class Players {
         }
 
     };
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static       HashMap<String, Integer> settings   = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all players except local player
      *
      * @param filter
+     *
      * @return all players
      */
     public static final Player[] getPlayers(final Filter<Player> filter) {
-        final Client client = Loader.getClient();
-        ArrayList<Player> playerList = new ArrayList<>();
+        final Client                            client     = Loader.getClient();
+        ArrayList<Player>                       playerList = new ArrayList<>();
         final org.rev317.min.accessors.Player[] accPlayers = client.getPlayers();
         for (int i = 0; i < accPlayers.length; i++) {
             if (accPlayers[i] == null) {
@@ -71,6 +72,7 @@ public class Players {
      * Returns array with the first index to be the nearest player
      *
      * @param filter
+     *
      * @return nearest players
      */
     public static final Player[] getNearest(final Filter<Player> filter) {

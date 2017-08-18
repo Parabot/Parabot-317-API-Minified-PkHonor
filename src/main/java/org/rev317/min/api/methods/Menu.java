@@ -34,6 +34,7 @@ public class Menu {
      *
      * @param object
      * @param actionIndex
+     *
      * @deprecated
      */
     public static void interact(SceneObject object, int actionIndex) {
@@ -87,6 +88,7 @@ public class Menu {
      *
      * @param character
      * @param actionIndex
+     *
      * @deprecated
      */
     public static void interact(Character character, int actionIndex) {
@@ -129,6 +131,7 @@ public class Menu {
      * @param item
      * @param actionIndex
      * @param interfaceParentId
+     *
      * @deprecated
      */
     public static void transformItem(Item item, int actionIndex, int interfaceParentId) {
@@ -178,6 +181,7 @@ public class Menu {
      *
      * @param item
      * @param action
+     *
      * @deprecated
      */
     public static void interact(GroundItem item, int action) {

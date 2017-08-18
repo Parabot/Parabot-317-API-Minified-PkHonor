@@ -18,11 +18,11 @@ public class Items {
     /**
      * TODO Cache results
      */
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
-    private static JSONParser jsonParser = new JSONParser();
+    private static HashMap<String, Integer> settings   = Context.getInstance().getServerProviderInfo().getSettings();
+    private static JSONParser               jsonParser = new JSONParser();
 
-    private static HashMap<Integer, Long> prices = new HashMap<>();
-    private static HashMap<Integer, String> names = new HashMap<>();
+    private static HashMap<Integer, Long>   prices = new HashMap<>();
+    private static HashMap<Integer, String> names  = new HashMap<>();
 
     public static String getName(int id) {
         String name;
@@ -32,7 +32,7 @@ public class Items {
             try {
                 String content = WebUtil.getContents(Configuration.ITEM_API + id);
                 if (content.length() > 0) {
-                    JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
+                    JSONObject jsonObject      = (JSONObject) jsonParser.parse(content);
                     JSONObject itemInformation = (JSONObject) jsonObject.get("result");
                     if (itemInformation.get("name") != null && !((String) itemInformation.get("name")).equalsIgnoreCase("null")) {
                         name = (String) itemInformation.get("name");
@@ -53,7 +53,7 @@ public class Items {
             String content = WebUtil.getContents(Configuration.ITEM_API + name);
             if (content.length() > 0) {
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
-                JSONArray array = (JSONArray) jsonObject.get("result");
+                JSONArray  array      = (JSONArray) jsonObject.get("result");
                 if (array.size() > 0) {
                     int[] ids = new int[array.size()];
                     for (int i = 0; i < array.size(); i++) {
@@ -73,6 +73,7 @@ public class Items {
      * Returns an int array based on the string it starts with. getIdsStart(dragon) will return an int array with all items starting with dragon
      *
      * @param name
+     *
      * @return
      */
     public static int[] getIdsStart(String name) {
@@ -80,7 +81,7 @@ public class Items {
             String content = WebUtil.getContents(Configuration.ITEM_API + "starts/" + name);
             if (content.length() > 0) {
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
-                JSONArray array = (JSONArray) jsonObject.get("result");
+                JSONArray  array      = (JSONArray) jsonObject.get("result");
                 if (array.size() > 0) {
                     int[] ids = new int[array.size()];
                     for (int i = 0; i < array.size(); i++) {
@@ -100,6 +101,7 @@ public class Items {
      * Returns an int array based on the string it contains. getIdsContain(dragon) will return an int array with all items containingdragon
      *
      * @param name
+     *
      * @return
      */
     public static int[] getIdsContain(String name) {
@@ -107,7 +109,7 @@ public class Items {
             String content = WebUtil.getContents(Configuration.ITEM_API + "contains/" + name);
             if (content.length() > 0) {
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
-                JSONArray array = (JSONArray) jsonObject.get("result");
+                JSONArray  array      = (JSONArray) jsonObject.get("result");
                 if (array.size() > 0) {
                     int[] ids = new int[array.size()];
                     for (int i = 0; i < array.size(); i++) {
@@ -130,7 +132,7 @@ public class Items {
             try {
                 String content = WebUtil.getContents(Configuration.ITEM_API + id + "/" + Context.getInstance().getServerProviderInfo().getServerName());
                 if (content.length() > 0) {
-                    JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
+                    JSONObject jsonObject      = (JSONObject) jsonParser.parse(content);
                     JSONObject itemInformation = (JSONObject) jsonObject.get("result");
                     if (itemInformation.get("price") != null && !((String) itemInformation.get("price")).equalsIgnoreCase("null")) {
                         long price = Long.parseLong((String) itemInformation.get("price"));

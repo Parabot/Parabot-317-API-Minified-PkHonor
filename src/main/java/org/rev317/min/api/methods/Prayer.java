@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 /**
  * @author JKetelaar, Fryslan
- *         TODO Set the actual level requirements
- *         TODO Set curses setting and action ids.
+ * TODO Set the actual level requirements
+ * TODO Set curses setting and action ids.
  */
 public class Prayer {
 
