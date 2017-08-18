@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.parabot</groupId>
+    <groupId>org.parabot.servers</groupId>
     <artifactId>317-api-minified-pkhonor</artifactId>
-    <version>1.0</version>
+    <version>0.1</version>
     <name>Parabot 317-API-Minified PkHonor</name>
 
     <licenses>
@@ -52,7 +52,7 @@
     </dependencies>
 
     <build>
-        <finalName>Provider-V${version}${build.version}</finalName>
+        <finalName>PkHonor-Provider-V${version}${build.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
