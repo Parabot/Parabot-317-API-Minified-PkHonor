@@ -128,24 +128,22 @@ public class Character implements Locatable {
      *
      * @return interacting character
      */
-    public final Character getInteractingCharacter() {
-        int index = this.accessor.getInteractingEntity();
-        if (index != -1 && index < 32768) {
-            return new Npc(Loader.getClient().getNpcs()[index], index);
-        } else if (index >= 32768) {
-            index -= 32768;
-            try {
-                if (Loader.getClient().getPlayers()[index] == null) {
-                    return Players.getMyPlayer();
-                }
-                return new Player(Loader.getClient().getPlayers()[index], index);
-            } catch (Throwable t) {
-                return Players.getMyPlayer();
-            }
-        }
-
-        return null;
-    }
+	public final Character getInteractingCharacter() {
+		int index = this.accessor.getInteractingEntity();
+		if (index != -1 && index < 32768) {
+			org.rev317.min.accessors.Npc npc = Loader.getClient().getNpcs()[index];
+			return (npc != null) ? new Npc(npc, index) : null;
+		} else if (index >= 32768) {
+			index -= 32768;
+			try {
+				org.rev317.min.accessors.Player player = Loader.getClient().getPlayers()[index];
+				return (player != null) ? new Player(player, index) : null;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
 
     /**
      * Gets the accessor class
