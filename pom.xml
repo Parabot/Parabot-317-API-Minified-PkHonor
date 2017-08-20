@@ -6,7 +6,7 @@
 
     <groupId>org.parabot.servers</groupId>
     <artifactId>317-api-minified-pkhonor</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <name>Parabot 317-API-Minified PkHonor</name>
 
     <licenses>
