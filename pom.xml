@@ -66,24 +66,23 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.5.3</version>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
                 <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
                     <outputDirectory>${project.build.directory}/final/</outputDirectory>
-                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
 
                 <executions>
                     <execution>
                         <id>make-assembly</id>
-                        <!-- bind to the packaging phase -->
                         <phase>package</phase>
                         <goals>
-                            <goal>single</goal>
+                            <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <finalName>PkHonor-Provider-V${build.version}</finalName>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
