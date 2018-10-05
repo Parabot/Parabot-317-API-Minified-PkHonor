@@ -7,6 +7,7 @@ import org.parabot.core.asm.ASMClassLoader;
 import org.parabot.core.asm.adapters.AddInterfaceAdapter;
 import org.parabot.core.asm.hooks.HookFile;
 import org.parabot.core.desc.ServerProviderInfo;
+import org.parabot.core.reflect.RefClass;
 import org.parabot.core.ui.components.VerboseLoader;
 import org.parabot.environment.api.utils.WebUtil;
 import org.parabot.environment.scripts.Script;
@@ -20,6 +21,7 @@ import org.rev317.min.ui.BotMenu;
 import javax.swing.*;
 import java.applet.Applet;
 import java.io.File;
+import java.net.InetAddress;
 import java.net.URL;
 
 /**
@@ -38,10 +40,30 @@ public class Loader extends ServerProvider {
         try {
             final Context        context     = Context.getInstance();
             final ASMClassLoader classLoader = context.getASMClassLoader();
-            final Class<?>       clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
-            Object               instance    = clientClass.newInstance();
 
-            return (Applet) instance;
+            System.setProperty("java.net.preferIPv4Stack", "true");
+            System.setProperty("java.net.preferIPv6Addresses", "false");
+            System.setProperty("sun.java2d.uiScale", "1");
+
+            Class<?> bmClass = classLoader.loadClass("pkhonor.bM");
+            bmClass.getDeclaredMethod("PsDw", new Class[] {int.class, String.class, int.class, boolean.class})
+                    .invoke(null, -1, System.getProperty("user.home"), 2, false);
+
+            final RefClass clientClass = new RefClass(classLoader.loadClass("pkhonor.Client"));
+            clientClass.getField("QaOL", "Z").setBoolean(false);
+            clientClass.getField("LdRS", "I").setInt(1);
+            clientClass.getField("JmV", "I").setInt(0);
+            clientClass.getMethod("Zuq").invoke();
+            clientClass.getField("RKA", "Z").setBoolean(true);
+            final RefClass Ce = new RefClass(classLoader.loadClass("pkhonor.Ce"));
+            Ce.getField("oW", "I").setInt(32);
+
+            final RefClass client = clientClass.newInstance();
+            clientClass.getField("PsDw", "Lpkhonor/Client;").set(client.getInstance());
+
+            Ce.getMethod("PsDw", new Class[] { InetAddress.class}).invoke(InetAddress.getLocalHost());
+
+            return (Applet) client.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
 
