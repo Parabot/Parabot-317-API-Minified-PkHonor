@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 /**
  * @author Everel, Matt123337, JKetelaar
+ * Custom code: BANKERS arrays have different values
  */
 public class Bank {
 
